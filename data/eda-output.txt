@@ -1,0 +1,38 @@
+Summary Statistics of Advertising.csv
+
+Summary Statistics of TV Budget
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   0.70   74.38  149.80  147.00  218.80  296.40 
+
+Summary Statistics of Radio Budget
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  0.000   9.975  22.900  23.260  36.520  49.600 
+
+Summary Statistics of Newspaper Budget
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   0.30   12.75   25.75   30.55   45.10  114.00 
+
+Summary Statistics of Sales
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   1.60   10.38   12.90   14.02   17.40   27.00 
+
+
+Simple Regressions of Sales
+
+Simple Regression of Sales on TV
+
+              Estimate  Std. Error  t value    Pr(>|t|)
+(Intercept) 7.03259355 0.457842940 15.36028 1.40630e-35
+TV          0.04753664 0.002690607 17.66763 1.46739e-42
+
+Simple Regression of Sales on Radio
+
+             Estimate Std. Error   t value     Pr(>|t|)
+(Intercept) 9.3116381 0.56290050 16.542245 3.561071e-39
+Radio       0.2024958 0.02041131  9.920765 4.354966e-19
+
+Simple Regression of Sales on Newspaper
+
+              Estimate Std. Error   t value     Pr(>|t|)
+(Intercept) 12.3514071 0.62142019 19.876096 4.713507e-49
+Newspaper    0.0546931 0.01657572  3.299591 1.148196e-03
