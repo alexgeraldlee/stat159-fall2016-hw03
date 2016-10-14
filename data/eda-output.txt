@@ -16,23 +16,9 @@ Summary Statistics of Sales
    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
    1.60   10.38   12.90   14.02   17.40   27.00 
 
-
-Simple Regressions of Sales
-
-Simple Regression of Sales on TV
-
-              Estimate  Std. Error  t value    Pr(>|t|)
-(Intercept) 7.03259355 0.457842940 15.36028 1.40630e-35
-TV          0.04753664 0.002690607 17.66763 1.46739e-42
-
-Simple Regression of Sales on Radio
-
-             Estimate Std. Error   t value     Pr(>|t|)
-(Intercept) 9.3116381 0.56290050 16.542245 3.561071e-39
-Radio       0.2024958 0.02041131  9.920765 4.354966e-19
-
-Simple Regression of Sales on Newspaper
-
-              Estimate Std. Error   t value     Pr(>|t|)
-(Intercept) 12.3514071 0.62142019 19.876096 4.713507e-49
-Newspaper    0.0546931 0.01657572  3.299591 1.148196e-03
+Correlation Matrix of Advertising
+                  TV      Radio  Newspaper     Sales
+TV        1.00000000 0.05480866 0.05664787 0.7822244
+Radio     0.05480866 1.00000000 0.35410375 0.5762226
+Newspaper 0.05664787 0.35410375 1.00000000 0.2282990
+Sales     0.78222442 0.57622257 0.22829903 1.0000000

@@ -1,6 +1,5 @@
 
-library(readr)
-library(xtable)
+
 advertising <- read.csv('../../data/Advertising.csv')
 
 
@@ -14,17 +13,7 @@ radio_stats <- summary(advertising$Radio)
 newspaper_stats <- summary(advertising$Newspaper)
 sales_stats <- summary(advertising$Sales)
 
-tv_reg <- lm(Sales ~ TV, data = advertising)
-radio_reg <- lm(Sales ~ Radio, data = advertising)
-newspaper_reg <- lm(Sales ~ Newspaper, data = advertising)
-
-tv_coefficients <- summary(tv_reg)$coefficients
-radio_coefficients <- summary(radio_reg)$coefficients
-newspaper_coefficients <- summary(newspaper_reg)$coefficients
-
-save(tv_coefficients, radio_coefficients, newspaper_coefficients,
-     file = '../../data/correlation-matrix.RData')
-
+correlation <- cor(advertising[,2:5])
 
 output_file <- '../../data/eda-output.txt'
 
@@ -38,14 +27,13 @@ cat('\nSummary Statistics of Newspaper Budget\n')
 newspaper_stats
 cat('\nSummary Statistics of Sales\n')
 sales_stats
-cat('\n\nSimple Regressions of Sales\n\n')
-cat('Simple Regression of Sales on TV\n\n')
-tv_coefficients
-cat('\nSimple Regression of Sales on Radio\n\n')
-radio_coefficients
-cat('\nSimple Regression of Sales on Newspaper\n\n')
-newspaper_coefficients
+cat('\nCorrelation Matrix of Advertising\n')
+correlation
 sink()
+
+
+
+save(correlation, file = '../../data/correlation-matrix.RData')
 
 
 ##########
