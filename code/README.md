@@ -1,0 +1,3 @@
+#Code
+
+This directory contains the scripts necessary to output the images found in the `../images/` directory, along with the summary statistics (made by `scripts/eda-script.R`) and regresssion details (made by `scripts/regression-script.R`) found in `../data/`. It also contains various statistical functions (in `functions/regression-functions.R`) and the scripts to test that those functions run as intended (via `test-that.R`).
