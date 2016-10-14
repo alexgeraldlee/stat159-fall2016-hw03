@@ -15,5 +15,16 @@ r_squared <- function(lm_object){
 }
 
 f_statistic <- function(lm_object){
-  
+  TSS <- total_sum_squares(lm_object)
+  RSS <- residual_sum_squares(lm_object)
+  p <- ncol(lm_object$model) - 1
+  n <- nrow(lm_object$model)
+  return(((TSS - RSS) / p) / (RSS / (n - p - 1)))
+}
+
+residual_std_error <- function(lm_object){
+  RSS <- residual_sum_squares(lm_object)
+  p <- ncol(lm_object$model) - 1
+  n <- nrow(lm_object$model)
+  return(sqrt(RSS / (n - p - 1)))
 }
