@@ -15,6 +15,7 @@ radio_reg_summary <- summary(radio_reg)
 newspaper_reg_summary <- summary(newspaper_reg)
 
 save(tv_reg_summary, radio_reg_summary, newspaper_reg_summary,
+     ad_reg_summ,
      file = '../../data/regression.RData')
 
 png('../../images/residual-plot.png')
