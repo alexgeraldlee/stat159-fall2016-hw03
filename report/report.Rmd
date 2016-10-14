@@ -28,7 +28,7 @@ We perform a simple linear regression on `Sales` for each of the three other fac
 
 `Sales = a + b * (FACTOR)`
 
-Where `(FACTOR)` is either `TV`, `Radio`, or `Newspaper`. We predict there to be a linear relationship between `Sales` and the amount of budget placed in advertising for each of these three media.
+Where `(FACTOR)` is either `TV`, `Radio`, or `Newspaper`. We predict there to be a linear relationship between `Sales` and the amount of budget placed in advertising for each of these three media. The summaries of these can be found in Tables 1-3.
 
 ```{r echo=FALSE,warning=FALSE}
 tv_reg <- lm(Sales ~ TV, data = advertising)
@@ -51,26 +51,15 @@ newspaper_reg_xtable <- xtable(newspaper_reg_summary$coefficients,
 ```
 
 
-```{r xtable1, results='asis',echo=FALSE,comment=''}
-print(tv_reg_xtable)
-```
-```{r xtable2, results='asis',echo=FALSE,comment=''}
-print(radio_reg_xtable)
-```
-```{r xtable3, results='asis',echo=FALSE,comment=''}
-print(newspaper_reg_xtable)
-```
-
-
 Next, we look at the relationship between `Sales` and the budgets of the various forms of media using the model:
 
     `Sales = a + b * TV + c * Radio + d * Newspaper`
 
-That is, we predict there to be a relationship between the amount of money spent on TV, Radio, and Newspaper advertising and the number of sales of units. We approximate the values of a, b, c, and d using a multiple linear regression under the least squares criterion.
+That is, we predict there to be a relationship between the amount of money spent on `TV`, `Radio`, and `Newspaper` advertising and the number of sales of units. We approximate the values of `a`, `b`, `c`, and `d` using a multiple linear regression under the least squares criterion.
 
 #Results
 
-We computed the correlation coefficients using the lm() function, with `TV` as a function of `Sales`. 
+We computed the correlation coefficients using the lm() function, with `TV` as a function of `Sales`. The summaries of the coefficients can be found in Table 4.
 
 ```{r echo=FALSE,comment=''}
 ad_reg <- lm(Sales ~ TV + Radio + Newspaper, data = advertising)
@@ -87,24 +76,28 @@ source('../code/functions/regression-functions.R')
 ```
 
 
-```{r xtable4, results='asis',echo=FALSE,comment=''}
-print(ad_reg_xtable)
+The correlations between each of the factors can be found in Table 5. A correlation closer in absolute value to 1 means that a change in one variable definitively predicts a change in the other.
+
+```{r echo=FALSE}
+load('../data/correlation-matrix.RData')
+cor_xtable <- xtable(correlation, 
+                     caption = "Correlation Matrix of the
+                     Multiple Linear Regression")
 ```
 
 
-The estimates of these coefficients, a, b, c, and d, are $`r ad_intercept`$, $`r ad_tv`$, $`r ad_radio`$, and $`r ad_newspaper`$, respectively. For every $1,000 increase in spending on TV advertising, sales are projected to increase by $`r ad_tv / 1000`$ units; this means that units have to cost at least $`r round(1000 / ad_tv, 2)`$ in order to be profitable. For every $1,000 increase in spending on Radio advertising, sales are projected to increase by $`r ad_radio / 1000`$ units; this means that units have to cost at least $`r round(1000 / ad_radio, 2)`$ in order to be profitable. For every $1,000 increase in spending on Newspaper advertising, sales are projected to increase by $`r ad_newspaper / 1000`$ units. 
+
+The estimates of these coefficients, a, b, c, and d, are $`r round(ad_intercept, 4)`$, $`r round(ad_tv, 4)`$, $`r round(ad_radio, 4)`$, and $`r round(ad_newspaper, 4)`$, respectively. For every $1,000 increase in spending on TV advertising, sales are projected to increase by $`r round(ad_tv * 1000)`$ units; this means that units have to cost at least $ $`r round(1 / ad_tv, 2)`$ in order to be profitable. For every $1,000 increase in spending on Radio advertising, sales are projected to increase by approximately $`r round(ad_radio * 1000)`$ units; this means that units have to cost at least $ $`r round(1 / ad_radio, 2)`$ in order to be profitable. For every $1,000 increase in spending on Newspaper advertising, sales are projected to increase by $`r round(ad_newspaper * 1000)`$ units. 
+
 
 ```{r comment='',echo=FALSE}
 ad_df <- data.frame("values" = c(r_squared(ad_reg), residual_std_error(ad_reg), f_statistic(ad_reg)),row.names = c("R^2", "RSE", "F-statistic"))
 ad_df_xtable <- xtable(ad_df, caption = "Regression Statistics")
 ```
 
-```{r xtable5, results='asis',echo=FALSE,comment=''}
-print(tv_reg_xtable)
-```
 
 
-On average, sales data will deviate from the true regression model by $`r round(residual_std_error(ad_reg), 4)`$ units. An R^2^ of $`r round(r_squared(ad_reg), 4)`$ means $`r round(r_squared(ad_reg), 4) * 100`$% of the variability is explained by the model. An F-statistic of $`r round(f_statistic(ad_reg), 4)`$ means that the coefficients found by our model are very likely to be close to the true regression values.
+Various statistics of the regression can be found in Table 6. On average, sales data will deviate from the true regression model by $`r round(residual_std_error(ad_reg), 4)`$ units. An R^2^ of $`r round(r_squared(ad_reg), 4)`$ means $`r round(r_squared(ad_reg), 4) * 100`$% of the variability is explained by the model. An F-statistic of $`r round(f_statistic(ad_reg), 4)`$ means that the coefficients found by our model are very likely to be close to the true regression values.
 
 
 
@@ -113,3 +106,24 @@ On average, sales data will deviate from the true regression model by $`r round(
 Individually, each of the factors `TV`, `Radio`, and `Newspaper` have a significant effect on the number of `Sales`. Together, only `TV` and `Radio` have significant effects; an increase in `Newspaper` budget actually decreases the number of `Sales`.
 
 There is a positive correlation between the budget for TV advertising and Sales; however, this relationship is very minimal. For every $1,000 spent on advertising only another 48 units are sold, so each unit would have to cost at least $20.84 in order to break even or profit off the units sold. 
+
+#Figures
+
+```{r xtable1, results='asis',echo=FALSE,comment=''}
+print(tv_reg_xtable)
+```
+```{r xtable2, results='asis',echo=FALSE,comment=''}
+print(radio_reg_xtable)
+```
+```{r xtable3, results='asis',echo=FALSE,comment=''}
+print(newspaper_reg_xtable)
+```
+```{r xtable4, results='asis',echo=FALSE,comment=''}
+print(ad_reg_xtable)
+```
+```{r xtable5, results='asis',echo=FALSE,comment=''}
+print(cor_xtable)
+```
+```{r xtable6, results='asis',echo=FALSE,comment=''}
+print(tv_reg_xtable)
+```
