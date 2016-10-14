@@ -1,4 +1,5 @@
 
+library(testthat)
 
 mtcars_reg <- lm(mpg ~ disp + hp, data = mtcars)
 
@@ -20,7 +21,7 @@ test_that("RSS is correct for mtcars", {
 test_that("RSS is correct for Advertising", {
   ad_reg_rss <- residual_sum_squares(ad_reg)
   expect_type(ad_reg_rss, 'double')
-  expect_equal(round(ad_reg_rss, 3), 1.686)
+  expect_equal(round(ad_reg_rss, 4), 556.8253)
   expect_length(ad_reg_rss, 1)
 })
 
