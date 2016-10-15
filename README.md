@@ -49,7 +49,7 @@ stat159-fall2016-hw03/
 		scatterplot-newspaper-sales.png
 		residual-plot.png
 		scale-location-plot.png
-		normall-qq-plot.png
+		normal-qq-plot.png
 	report/
 		report.Rmd
 		report.pdf
